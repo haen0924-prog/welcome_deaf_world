@@ -353,6 +353,26 @@
     .hotspot { font-size: 13px; padding: 7px 12px; }
     .deco { display: none; }
   }
+  /* ================= 포스터 태그 영상 ================= */
+  .hotspot .hs-video {
+    display: none; position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%);
+    width: 170px; background: #fff; border: 2.5px solid var(--ink); border-radius: 16px; padding: 6px;
+    box-shadow: 0 5px 0 var(--ink); z-index: 20; pointer-events: none;
+  }
+  .hotspot.playing .hs-video { display: block; }
+  .hotspot .hs-video video { width: 100%; display: block; border-radius: 10px; }
+
+  /* ================= 브랜드 영상 ================= */
+  .brand-wrap { position: relative; display: inline-block; }
+  .brand-video {
+    display: none; position: absolute; top: calc(100% + 12px); left: 0; z-index: 80;
+    width: 300px; background: #fff; border: 2.5px solid var(--ink); border-radius: 18px;
+    padding: 8px; box-shadow: 0 6px 0 var(--ink);
+  }
+  .brand-wrap.open .brand-video { display: block; }
+  .brand-video video { width: 100%; display: block; border-radius: 12px; }
+  @media (max-width: 640px) { .brand-video { width: 240px; } }
+
   /* ================= 맨 위로 버튼 ================= */
   .to-top {
     position: fixed; right: 20px; bottom: 20px; z-index: 50;
@@ -404,11 +424,14 @@
 <!-- ============ 고정 상단 메뉴 ============ -->
 <div class="topbar">
   <div class="wrap">
-    <a class="brand" href="#top">
+    <div class="brand-wrap">
+      <a class="brand" href="#top">
       <span class="l-ko">웰컴 투 <span>데프 월드</span></span>
       <span class="l-en">Welcome to <span>Deaf World</span></span>
       
     </a>
+      <div class="brand-video"><video src="videos/welcome-deaf-world.mp4" muted loop playsinline preload="metadata"></video></div>
+    </div>
     <div class="topmid">
       <nav class="topnav" aria-label="프로그램 메뉴">
         <a class="pill" href="#exhibition"><span class="l-ko">전시</span><span class="l-en">Exhibition</span></a>
@@ -435,20 +458,15 @@
       </div>
 
       <a class="hotspot" href="#exhibition" style="left:73%; top:21%;">
-        <span class="l-ko">전시</span><span class="l-en">Exhibition</span>
-      </a>
+        <span class="l-ko">전시</span><span class="l-en">Exhibition</span><span class="hs-video"><video src="videos/sign-exhibition.mp4" muted loop playsinline preload="metadata"></video></span></a>
       <a class="hotspot" href="#workshop" style="left:23%; top:51%;">
-        <span class="l-ko">워크숍</span><span class="l-en">Workshop</span>
-      </a>
+        <span class="l-ko">워크숍</span><span class="l-en">Workshop</span><span class="hs-video"><video src="videos/sign-workshop.mp4" muted loop playsinline preload="metadata"></video></span></a>
       <a class="hotspot" href="#booth" style="left:45%; top:67%;">
-        <span class="l-ko">부스</span><span class="l-en">Booth</span>
-      </a>
+        <span class="l-ko">부스</span><span class="l-en">Booth</span><span class="hs-video"><video src="videos/sign-booth.mp4" muted loop playsinline preload="metadata"></video></span></a>
       <a class="hotspot" href="#slam-performance" style="left:75%; top:80%;">
-        <span class="l-ko">슬램·공연</span><span class="l-en">Slam & Performance</span>
-      </a>
+        <span class="l-ko">슬램·공연</span><span class="l-en">Slam & Performance</span><span class="hs-video"><video src="videos/sign-performance.mp4" muted loop playsinline preload="metadata"></video></span></a>
       <a class="hotspot" href="#camp" style="left:20%; top:76%;">
-        <span class="l-ko">캠프</span><span class="l-en">Camp</span>
-      </a>
+        <span class="l-ko">캠프</span><span class="l-en">Camp</span></a>
     </div>
 
     <p class="hero-hint">
@@ -1162,5 +1180,29 @@
 </script>
 
 <button type="button" class="to-top" aria-label="맨 위로 / Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span class="arrow">⬆️</span>TOP</button>
+<script>
+(function () {
+  var bw = document.querySelector('.brand-wrap');
+  if (!bw) return;
+  var bv = bw.querySelector('video');
+  function show() { bw.classList.add('open'); try { bv.play().catch(function () {}); } catch (e) {} }
+  function hide() { bw.classList.remove('open'); try { bv.pause(); } catch (e) {} }
+  bw.addEventListener('mouseenter', show);
+  bw.addEventListener('mouseleave', hide);
+  bw.addEventListener('touchstart', function () {
+    if (bw.classList.contains('open')) hide(); else show();
+  }, { passive: true });
+})();
+</script>
+<script>
+(function () {
+  document.querySelectorAll('.hotspot').forEach(function (a) {
+    var v = a.querySelector('.hs-video video');
+    if (!v) return;
+    a.addEventListener('mouseenter', function () { a.classList.add('playing'); try { v.play().catch(function () {}); } catch (e) {} });
+    a.addEventListener('mouseleave', function () { a.classList.remove('playing'); try { v.pause(); } catch (e) {} });
+  });
+})();
+</script>
 </body>
 </html>
