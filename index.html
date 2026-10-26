@@ -283,14 +283,14 @@
   .camp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-bottom: 56px; }
   .camp-poster .poster-wrap { max-width: none; margin: 0; }
   .camp-text .sec-desc { margin: 0 0 28px; font-family: "Nanum Pen Script", "Noto Sans KR", sans-serif; font-size: 40px; line-height: 1.4; font-weight: 400; color: var(--ink); max-width: none; }
-  .camp-text .timeline { margin: 0; }
-  .camp-text .timeline li { grid-template-columns: 290px 1fr; }
-  .camp-text .timeline .date { white-space: nowrap; font-size: 20px; }
+  .timeline { margin: 0 0 40px; }
+  .timeline li { grid-template-columns: 290px 1fr; }
+  .timeline .date { white-space: nowrap; font-size: 22px; }
   @media (max-width: 880px) {
     .camp-grid { grid-template-columns: 1fr; gap: 32px; }
     .camp-text .sec-desc { font-size: 28px; }
-    .camp-text .timeline li { grid-template-columns: 1fr; }
-    .camp-text .timeline .date { white-space: normal; font-size: 22px; }
+    .timeline li { grid-template-columns: 1fr; }
+    .timeline .date { white-space: normal; }
   }
   /* ================= 일정표 ================= */
   .sched { margin: 0 0 48px; }
@@ -512,7 +512,10 @@
         <p class="sec-desc l-ko">서로 다른 경험과 감각이 만나면 어떤 이야기가 만들어질까요? 장애예술인이 창작과 교류의 주체가 되어, 시민과 함께 새로운 예술적 경험을 만들어 가는 참여형 문화예술 축제입니다.</p>
     <p class="sec-desc l-en">What kind of stories will emerge when different experiences and senses meet? Modu Story Camp is a participatory arts festival in which disabled artists lead creation and exchange, creating new artistic experiences together with citizens.</p>
 
-        <ul class="timeline">
+      </div>
+    </div>
+
+  <ul class="timeline">
       <li class="l-ko">
         <div class="date">10. 31.(토)</div>
         <div>
@@ -545,9 +548,6 @@
       </li>
       
     </ul>
-      </div>
-    </div>
-
 
   </div>
 </header>
