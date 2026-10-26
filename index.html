@@ -286,14 +286,15 @@
   .camp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-bottom: 56px; }
   .camp-poster .poster-wrap { max-width: none; margin: 0; }
   .camp-text .sec-desc { margin: 0 0 28px; font-family: "Nanum Pen Script", "Noto Sans KR", sans-serif; font-size: 40px; line-height: 1.4; font-weight: 400; color: var(--ink); max-width: none; }
-  .camp-text .info-list { display: grid; grid-template-columns: 0.9fr 0.8fr 1.4fr; gap: 16px; margin: 8px 0 0; }
-  .camp-text .info-item { border: none; padding: 0; background: none; text-align: left; }
-  .camp-text .info-item .label { display: inline-flex; align-items: center; gap: 6px; font-family: "Noto Sans KR", sans-serif; font-size: 15px; font-weight: 900; color: var(--ink); background: var(--chip, var(--yellow)); padding: 6px 16px; border-radius: 999px; margin-bottom: 10px; white-space: nowrap; }
+  .camp-text .info-list { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 8px 0 0; }
+  .camp-text .info-item { border: none; padding: 0; background: none; text-align: left; display: flex; align-items: center; gap: 16px; }
+  .camp-text .info-item .label { display: inline-flex; align-items: center; gap: 6px; font-family: "Noto Sans KR", sans-serif; font-size: 15px; font-weight: 900; color: var(--ink); background: var(--chip, var(--yellow)); padding: 6px 16px; border-radius: 999px; margin: 0; flex: 0 0 auto; min-width: 104px; justify-content: space-between; white-space: nowrap; }
   .camp-text .info-item .label::after { content: "→"; font-weight: 900; color: var(--red); }
   .camp-text .info-item:nth-child(1) { --chip: var(--yellow); }
   .camp-text .info-item:nth-child(2) { --chip: #bcd6f5; }
   .camp-text .info-item:nth-child(3) { --chip: #f7c3d2; }
-  .camp-text .info-item .value { font-family: "Nanum Pen Script", "Noto Sans KR", sans-serif; font-size: 30px; line-height: 1.3; font-weight: 400; color: var(--ink); }
+  .camp-text .info-item .value { font-family: "Nanum Pen Script", "Noto Sans KR", sans-serif; line-height: 1.3; font-weight: 400; color: var(--ink); flex: 1 1 auto; min-width: 0; font-size: 26px; }
+  @media (min-width: 641px) { .camp-text .info-item .value { white-space: nowrap; } }
   .timeline { margin: 0 0 40px; }
   .timeline li { grid-template-columns: 290px 1fr; }
   .timeline .date { white-space: nowrap; font-size: 22px; }
@@ -392,7 +393,9 @@
     .booth-grid { grid-template-columns: 1fr; }
     .booth-photos { grid-template-columns: repeat(2, 1fr); }
     .timeline li { grid-template-columns: 1fr; gap: 8px; }
-    .camp-text .info-list { grid-template-columns: 1fr; gap: 12px; }
+    .camp-text .info-list { gap: 10px; }
+    .camp-text .info-item .label { min-width: 92px; font-size: 14px; }
+    .camp-text .info-item .value { font-size: 24px; }
     .card { padding: 24px; }
     .card h3 { font-size: 25px; }
     .hotspot { font-size: 13px; padding: 7px 12px; }
