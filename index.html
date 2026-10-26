@@ -6,7 +6,7 @@
 <title>웰컴 투 데프 월드 | Welcome to Deaf World</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style>
   :root {
     --paper: #ffffff;
@@ -282,12 +282,15 @@
   /* ================= 캠프 포스터 + 글 ================= */
   .camp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-bottom: 56px; }
   .camp-poster .poster-wrap { max-width: none; margin: 0; }
-  .camp-text .sec-desc { margin: 0 0 28px; }
+  .camp-text .sec-desc { margin: 0 0 28px; font-family: "Nanum Pen Script", "Noto Sans KR", sans-serif; font-size: 40px; line-height: 1.4; font-weight: 400; color: var(--ink); max-width: none; }
   .camp-text .timeline { margin: 0; }
+  .camp-text .timeline li { grid-template-columns: 290px 1fr; }
+  .camp-text .timeline .date { white-space: nowrap; font-size: 20px; }
   @media (max-width: 880px) {
     .camp-grid { grid-template-columns: 1fr; gap: 32px; }
-    .camp-text { order: 1; }
-    .camp-poster { order: 2; }
+    .camp-text .sec-desc { font-size: 28px; }
+    .camp-text .timeline li { grid-template-columns: 1fr; }
+    .camp-text .timeline .date { white-space: normal; font-size: 22px; }
   }
   /* ================= 일정표 ================= */
   .sched { margin: 0 0 48px; }
@@ -488,7 +491,8 @@
 <!-- ============ 히어로: 포스터 + 프로그램 이름표 ============ -->
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="poster">
+    <div class="camp-grid">
+    <div class="poster camp-poster">
       <div class="img-box">
         <img src="images/camp-poster.jpg" alt="2026 모두 이야기 캠프 포스터" onerror="this.style.display='none'">
         <div class="ph">images/camp-poster.jpg</div>
@@ -542,6 +546,7 @@
       
     </ul>
       </div>
+    </div>
 
 
   </div>
