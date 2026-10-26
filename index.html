@@ -163,8 +163,7 @@
     color: #fff;
   }
   .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-  .closing { background: var(--paper); padding: 72px 0 40px; text-align: center; }
-  .closing-text { font-family: "Nanum Pen Script", "Noto Sans KR", sans-serif; font-size: 40px; line-height: 1.45; margin: 0 auto; max-width: 900px; color: var(--ink); }
+
   .info-item { padding: 28px 16px; text-align: center; border-right: 2px solid #3a3a3a; }
   .info-item:last-child { border-right: none; }
   .info-item .label { font-size: 13px; color: var(--yellow); font-weight: 700; margin-bottom: 4px; }
@@ -287,6 +286,14 @@
   .camp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-bottom: 56px; }
   .camp-poster .poster-wrap { max-width: none; margin: 0; }
   .camp-text .sec-desc { margin: 0 0 28px; font-family: "Nanum Pen Script", "Noto Sans KR", sans-serif; font-size: 40px; line-height: 1.4; font-weight: 400; color: var(--ink); max-width: none; }
+  .camp-text .info-list { display: grid; grid-template-columns: 0.9fr 0.8fr 1.4fr; gap: 16px; margin: 8px 0 0; }
+  .camp-text .info-item { border: none; padding: 0; background: none; text-align: left; }
+  .camp-text .info-item .label { display: inline-flex; align-items: center; gap: 6px; font-family: "Noto Sans KR", sans-serif; font-size: 15px; font-weight: 900; color: var(--ink); background: var(--chip, var(--yellow)); padding: 6px 16px; border-radius: 999px; margin-bottom: 10px; white-space: nowrap; }
+  .camp-text .info-item .label::after { content: "→"; font-weight: 900; color: var(--red); }
+  .camp-text .info-item:nth-child(1) { --chip: var(--yellow); }
+  .camp-text .info-item:nth-child(2) { --chip: #bcd6f5; }
+  .camp-text .info-item:nth-child(3) { --chip: #f7c3d2; }
+  .camp-text .info-item .value { font-family: "Nanum Pen Script", "Noto Sans KR", sans-serif; font-size: 30px; line-height: 1.3; font-weight: 400; color: var(--ink); }
   .timeline { margin: 0 0 40px; }
   .timeline li { grid-template-columns: 290px 1fr; }
   .timeline .date { white-space: nowrap; font-size: 22px; }
@@ -380,13 +387,12 @@
     .lang-switch { justify-content: flex-end; }
     .topnav { padding-bottom: 4px; }
     .info-grid { grid-template-columns: 1fr; }
-    .closing { padding: 48px 0 28px; }
-    .closing-text { font-size: 28px; }
     .info-item { border-right: none; border-bottom: 2px solid #3a3a3a; }
     .info-item:last-child { border-bottom: none; }
     .booth-grid { grid-template-columns: 1fr; }
     .booth-photos { grid-template-columns: repeat(2, 1fr); }
     .timeline li { grid-template-columns: 1fr; gap: 8px; }
+    .camp-text .info-list { grid-template-columns: 1fr; gap: 12px; }
     .card { padding: 24px; }
     .card h3 { font-size: 25px; }
     .hotspot { font-size: 13px; padding: 7px 12px; }
@@ -521,6 +527,32 @@
     <div class="camp-text">
         <p class="sec-desc l-ko">서로 다른 경험과 감각이 만나면<br>어떤 이야기가 만들어질까요?<br><br>장애예술인이 창작과 교류의 주체가 되어,<br>시민과 함께 새로운 예술적 경험을<br>만들어 가는 참여형 문화 예술 축제입니다.</p>
     <p class="sec-desc l-en">What kind of stories will emerge when different experiences and senses meet? Modu Story Camp is a participatory arts festival in which disabled artists lead creation and exchange, creating new artistic experiences together with citizens.</p>
+        <div class="info-list">
+    <div class="info-item">
+      <div class="label l-ko">일시</div>
+      <div class="label l-en">Date & Time</div>
+      
+      <div class="value l-ko">10. 31.(토) 10:00~17:30</div>
+      <div class="value l-en">Oct 31 (Sat) 10:00–17:30</div>
+      
+    </div>
+    <div class="info-item">
+      <div class="label l-ko">장소</div>
+      <div class="label l-en">Venue</div>
+      
+      <div class="value l-ko">모두예술극장</div>
+      <div class="value l-en">Modu Art Theater</div>
+      
+    </div>
+    <div class="info-item">
+      <div class="label l-ko">참여 방법</div>
+      <div class="label l-en">How to Join</div>
+      
+      <div class="value l-ko">전시·워크숍·공연 현장 접수</div>
+      <div class="value l-en">On-site registration</div>
+      
+    </div>
+        </div>
 
       </div>
     </div>
@@ -561,35 +593,6 @@
 
   </div>
 </header>
-
-<div class="info">
-  <div class="wrap info-grid">
-    <div class="info-item">
-      <div class="label l-ko">일시</div>
-      <div class="label l-en">Date & Time</div>
-      
-      <div class="value l-ko">10. 31.(토) 10:00~17:30</div>
-      <div class="value l-en">Oct 31 (Sat) 10:00–17:30</div>
-      
-    </div>
-    <div class="info-item">
-      <div class="label l-ko">장소</div>
-      <div class="label l-en">Venue</div>
-      
-      <div class="value l-ko">모두예술극장</div>
-      <div class="value l-en">Modu Art Theater</div>
-      
-    </div>
-    <div class="info-item">
-      <div class="label l-ko">참여 방법</div>
-      <div class="label l-en">How to Join</div>
-      
-      <div class="value l-ko">전시·워크숍·공연 현장 접수</div>
-      <div class="value l-en">On-site registration</div>
-      
-    </div>
-  </div>
-</div>
 
 <!-- ============ 전시 ============ -->
 <section class="s-exhibition" id="exhibition">
@@ -1146,13 +1149,6 @@
       </ul>
       
     </div>
-  </div>
-</section>
-
-<section class="closing">
-  <div class="wrap">
-    <p class="closing-text l-ko">서로 다른 경험과 감각이 만나면<br>어떤 이야기가 만들어질까요?<br><br>장애예술인이 창작과 교류의 주체가 되어,<br>시민과 함께 새로운 예술적 경험을<br>만들어 가는 참여형 문화 예술 축제입니다.</p>
-    <p class="closing-text l-en">What kind of stories will emerge when different experiences and senses meet? Modu Story Camp is a participatory arts festival in which disabled artists lead creation and exchange, creating new artistic experiences together with citizens.</p>
   </div>
 </section>
 
