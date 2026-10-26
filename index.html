@@ -25,6 +25,7 @@
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
+    word-break: keep-all;
     font-family: "Noto Sans KR", "Noto Sans SC", "Malgun Gothic", sans-serif;
     background: var(--paper);
     color: var(--ink);
@@ -162,6 +163,8 @@
     color: #fff;
   }
   .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .closing { background: var(--paper); padding: 72px 0 40px; text-align: center; }
+  .closing-text { font-family: "Nanum Pen Script", "Noto Sans KR", sans-serif; font-size: 40px; line-height: 1.45; margin: 0 auto; max-width: 900px; color: var(--ink); }
   .info-item { padding: 28px 16px; text-align: center; border-right: 2px solid #3a3a3a; }
   .info-item:last-child { border-right: none; }
   .info-item .label { font-size: 13px; color: var(--yellow); font-weight: 700; margin-bottom: 4px; }
@@ -206,6 +209,7 @@
   .card.split.reverse .img-box { order: -1; }
   .card .img-box { margin: 0; align-self: start; }
   .card h3 { font-size: 30px; font-weight: 900; line-height: 1.25; margin: 0 0 8px; letter-spacing: -0.02em; }
+  @media (min-width: 761px) { .card h3 { white-space: nowrap; } }
   .card .sub { font-weight: 700; font-size: 17px; color: var(--blue); margin: 0 0 14px; }
   .card p { margin: 0 0 12px; }
   .card .keyline { font-size: 21px; font-weight: 900; line-height: 1.5; margin: 0 0 14px; }
@@ -376,6 +380,8 @@
     .lang-switch { justify-content: flex-end; }
     .topnav { padding-bottom: 4px; }
     .info-grid { grid-template-columns: 1fr; }
+    .closing { padding: 48px 0 28px; }
+    .closing-text { font-size: 28px; }
     .info-item { border-right: none; border-bottom: 2px solid #3a3a3a; }
     .info-item:last-child { border-bottom: none; }
     .booth-grid { grid-template-columns: 1fr; }
@@ -1140,6 +1146,13 @@
       </ul>
       
     </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <p class="closing-text l-ko">서로 다른 경험과 감각이 만나면<br>어떤 이야기가 만들어질까요?<br><br>장애예술인이 창작과 교류의 주체가 되어,<br>시민과 함께 새로운 예술적 경험을<br>만들어 가는 참여형 문화 예술 축제입니다.</p>
+    <p class="closing-text l-en">What kind of stories will emerge when different experiences and senses meet? Modu Story Camp is a participatory arts festival in which disabled artists lead creation and exchange, creating new artistic experiences together with citizens.</p>
   </div>
 </section>
 
