@@ -279,6 +279,14 @@
   .timeline .date { font-weight: 900; font-size: 22px; color: var(--red); }
   .timeline .title { font-weight: 900; font-size: 22px; margin-bottom: 6px; }
   .timeline .desc { margin: 0; color: var(--muted); }
+  /* ================= 캠프 포스터 + 글 ================= */
+  .camp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-bottom: 56px; }
+  .camp-poster .poster-wrap { max-width: none; margin: 0; }
+  .camp-text .sec-desc { margin: 0 0 28px; }
+  .camp-text .timeline { margin: 0; }
+  @media (max-width: 880px) {
+    .camp-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
   /* ================= 일정표 ================= */
   .sched { margin: 0 0 48px; }
   .sched-title { font-size: 30px; font-weight: 900; margin: 0 0 22px; letter-spacing: -0.02em; }
@@ -353,6 +361,9 @@
     .hotspot { font-size: 13px; padding: 7px 12px; }
     .deco { display: none; }
   }
+  .touch-only { display: none; }
+  @media (hover: none) { .touch-only { display: block; margin-top: 6px; } }
+
   /* ================= 포스터 태그 영상 ================= */
   .hotspot .hs-video {
     display: none; position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%);
@@ -472,6 +483,7 @@
     <p class="hero-hint">
       <span class="l-ko">그림을 눌러 프로그램으로 이동하세요</span>
       <span class="l-en">Tap a tag on the poster to go to each program</span>
+      <span class="touch-only l-ko">한 번 누르면 영상, 한 번 더 누르면 해당 프로그램으로 이동합니다</span><span class="touch-only l-en">Tap once to preview, tap again to go to the program</span>
       
     </p>
 
@@ -954,24 +966,22 @@
 <section class="s-camp" id="camp">
   <div class="deco" style="width:200px; height:200px; right:-40px; top:30px;"><svg><use href="#s-flower"/></svg></div>
   <div class="wrap">
-    <span class="kicker l-ko">05 캠프</span>
-    <span class="kicker l-en">05 CAMP</span>
     
     <h2 class="sec-title l-ko">2026 모두 이야기 캠프</h2>
     <h2 class="sec-title l-en">2026 Modu Story Camp</h2>
-    
-    <p class="sec-desc l-ko">서로 다른 경험과 감각이 만나면 어떤 이야기가 만들어질까요? 장애예술인이 창작과 교류의 주체가 되어, 시민과 함께 새로운 예술적 경험을 만들어 가는 참여형 문화예술 축제입니다.</p>
-    <p class="sec-desc l-en">What kind of stories will emerge when different experiences and senses meet? Modu Story Camp is a participatory arts festival in which disabled artists lead creation and exchange, creating new artistic experiences together with citizens.</p>
-    
-
-    <div class="poster-wrap">
+    <div class="camp-grid">
+      <div class="camp-poster">    <div class="poster-wrap">
       <div class="img-box">
         <img src="images/camp-poster.jpg" alt="2026 모두 이야기 캠프 포스터" onerror="this.style.display='none'">
         <div class="ph">images/camp-poster.jpg</div>
       </div>
     </div>
+      </div>
+      <div class="camp-text">
+        <p class="sec-desc l-ko">서로 다른 경험과 감각이 만나면 어떤 이야기가 만들어질까요? 장애예술인이 창작과 교류의 주체가 되어, 시민과 함께 새로운 예술적 경험을 만들어 가는 참여형 문화예술 축제입니다.</p>
+    <p class="sec-desc l-en">What kind of stories will emerge when different experiences and senses meet? Modu Story Camp is a participatory arts festival in which disabled artists lead creation and exchange, creating new artistic experiences together with citizens.</p>
 
-    <ul class="timeline">
+        <ul class="timeline">
       <li class="l-ko">
         <div class="date">10. 31.(토)</div>
         <div>
@@ -1004,6 +1014,15 @@
       </li>
       
     </ul>
+      </div>
+    </div>
+
+    
+
+    
+
+
+
 
 <div class="sched l-ko">
   <h3 class="sched-title">전체 프로그램 일정표</h3>
@@ -1196,11 +1215,28 @@
 </script>
 <script>
 (function () {
+  var items = [];
   document.querySelectorAll('.hotspot').forEach(function (a) {
     var v = a.querySelector('.hs-video video');
     if (!v) return;
-    a.addEventListener('mouseenter', function () { a.classList.add('playing'); try { v.play().catch(function () {}); } catch (e) {} });
-    a.addEventListener('mouseleave', function () { a.classList.remove('playing'); try { v.pause(); } catch (e) {} });
+    items.push({ a: a, v: v });
+  });
+  function show(it) {
+    items.forEach(function (o) { if (o !== it) { o.a.classList.remove('playing'); try { o.v.pause(); } catch (e) {} } });
+    it.a.classList.add('playing');
+    try { it.v.play().catch(function () {}); } catch (e) {}
+  }
+  function hide(it) { it.a.classList.remove('playing'); try { it.v.pause(); } catch (e) {} }
+  var isTouchOnly = window.matchMedia('(hover: none)').matches;
+  items.forEach(function (it) {
+    // mouse: hover shows the video
+    it.a.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') show(it); });
+    it.a.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hide(it); });
+    // touch: first tap shows the video, second tap goes to the section
+    it.a.addEventListener('click', function (e) {
+      if (!isTouchOnly) return;
+      if (!it.a.classList.contains('playing')) { e.preventDefault(); show(it); }
+    });
   });
 })();
 </script>
